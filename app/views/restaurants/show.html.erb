@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="content col-xs-12 col-sm-4">
+
+      <h1><%= @restaurant.name %></h1>
+      <p><i class="fa fa-map-marker" aria-hidden="true"></i> <%= @restaurant.address %></p>
+      <p><i class="fa fa-phone" aria-hidden="true"></i> <%= @restaurant.phone_number %></p>
+      <h3>Reviews:</h3>
+      <ul class="list-unstyled">
+        <% @restaurant.reviews.each do |review| %>
+          <li>
+            <p>" <%= review.content %> "</p>
+            <li>
+            <% review.rating.times do %>
+              <i class="fa fa-star"></i>
+            <% end %>
+            <% (5 - review.rating).times do %>
+              <i class="fa fa-star-o"></i>
+            <% end %>
+            </li>
+          </li>
+          <br>
+        <% end %>
+      </ul>
+      <%= link_to "Back", restaurants_path %> |
+      <%= link_to "Add a review", new_restaurant_review_path(@restaurant) %>
+
+    </div>
+
+    <div class="col-xs-12 col-sm-6 image_container">
+          <%= image_tag "restaurant-4.jpg", class: "image" %>
+    </div>
+  </div>
+</div>
